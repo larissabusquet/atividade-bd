@@ -52,3 +52,16 @@ print("Livros disponíveis para empréstimo:")
 for livro in livros_disponiveis:
     print(f"ID: {livro[0]}, Título: {livro[1]}, Autor: {livro[2]}, Ano: {livro[3]}, Gênero: {livro[4]}")
 conn.close()
+
+# Atualizar disponibilidade de um livro.
+
+conn = sqlite3.connect('livraria.db')
+cursor = conn.cursor()
+cursor.execute('''
+    UPDATE Livros
+    SET disponivel = 0
+    WHERE titulo = ?
+''', ("A hora da estrela",))
+conn.commit()
+print("Disponibilidade atualizada em 'A hora da estrela'.")
+conn.close()
