@@ -40,3 +40,15 @@ for livro in livros:
 conn.commit()
 conn.close()
 print("Livros inseridos com sucesso na tabela 'Livros'.")
+
+# Consultar os livros na tabela.
+
+conn = sqlite3.connect('livraria.db')
+cursor = conn.cursor()
+
+cursor.execute('SELECT * FROM Livros WHERE disponivel = 1')
+livros_disponiveis = cursor.fetchall()
+print("Livros disponíveis para empréstimo:")
+for livro in livros_disponiveis:
+    print(f"ID: {livro[0]}, Título: {livro[1]}, Autor: {livro[2]}, Ano: {livro[3]}, Gênero: {livro[4]}")
+conn.close()
