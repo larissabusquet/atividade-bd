@@ -135,3 +135,14 @@ for usuario in usuarios:
     print(f" Inserido: {usuario[0]} - {usuario[1]} anos")
 conn.commit()
 conn.close()
+
+# Deletar a tabela usuário.
+
+conn = sqlite3.connect('livraria.db')
+cursor = conn.cursor()
+cursor.execute('''
+    DROP TABLE IF EXISTS Usuario
+''')
+conn.commit()
+conn.close()
+print("Tabela 'Usuario' deletada com sucesso.")
