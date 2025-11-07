@@ -114,3 +114,24 @@ cursor.execute('''
 conn.commit()
 conn.close()
 print("Coluna 'idade' adicionada à tabela 'Usuario' com sucesso.")
+
+# Inserir 5 usuários na tabela
+
+conn = sqlite3.connect('livraria.db')
+cursor = conn.cursor()
+usuarios = [
+    ("Gabriel Vieira", 28),
+    ("Luiz Fernando", 35),
+    ("Evelyn Silva", 22),
+    ("Lincoln Barbosa", 30),
+    ("Lucas Nogueira", 23)
+]
+
+for usuario in usuarios:
+    cursor.execute('''
+        INSERT INTO Usuario (nome, idade)
+        VALUES (?, ?) 
+    ''', usuario)
+    print(f" Inserido: {usuario[0]} - {usuario[1]} anos")
+conn.commit()
+conn.close()
