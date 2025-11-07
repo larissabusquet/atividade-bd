@@ -77,14 +77,14 @@ for livro in livros_ordenados:
     print(f"ID: {livro[0]}, Título: {livro[1]}, Autor: {livro[2]}, Ano: {livro[3]}, Gênero: {livro[4]}, Disponível: {livro[5]}")
 conn.close()
 
-# Deletar um livro da tabela.
+# Deletar um livro antigo da tabela. (Não vi que era por data, então to adicionando como outra feature)
 
 conn = sqlite3.connect('livraria.db')
 cursor = conn.cursor()
 cursor.execute('''
     DELETE FROM Livros
-    WHERE titulo = ?
-''', ("A Fúria dos Reis",))
+    WHERE ano < 1940
+''')
 conn.commit()
-print("Livro 'A Fúria dos Reis' deletado da tabela.")
+print("Livro 'Dom Casmurro' deletado da tabela.")
 conn.close()
