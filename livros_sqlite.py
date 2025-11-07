@@ -89,16 +89,28 @@ conn.commit()
 print("Livro 'Dom Casmurro' deletado da tabela.")
 conn.close()
 
-# Criar tabela usuários.
+# Criar tabela usuário.
 
 conn = sqlite3.connect('livraria.db')
 cursor = conn.cursor()
 cursor.execute('''
-    CREATE TABLE IF NOT EXISTS Usuarios (
+    CREATE TABLE IF NOT EXISTS Usuario (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome TEXT,
     )
 ''')
 conn.commit()
 conn.close()
-print("Tabela 'Usuarios' criada com sucesso.")
+print("Tabela 'Usuario' criada com sucesso.")
+
+# Alterar tabela usuário para adicionar idade.
+
+conn = sqlite3.connect('livraria.db')
+cursor = conn.cursor()
+cursor.execute('''
+    ALTER TABLE Usuario
+    ADD COLUMN idade INTEGER
+''')
+conn.commit()
+conn.close()
+print("Coluna 'idade' adicionada à tabela 'Usuario' com sucesso.")
