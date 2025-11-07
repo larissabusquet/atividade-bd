@@ -65,3 +65,14 @@ cursor.execute('''
 conn.commit()
 print("Disponibilidade atualizada em 'A hora da estrela'.")
 conn.close()
+
+# Ordenar por ano
+
+conn = sqlite3.connect('livraria.db')
+cursor = conn.cursor()
+cursor.execute('SELECT * FROM Livros ORDER BY ano DESC')
+livros_ordenados = cursor.fetchall()
+print("Livros ordenados por ano de publicação (do mais recente ao mais antigo):")
+for livro in livros_ordenados:
+    print(f"ID: {livro[0]}, Título: {livro[1]}, Autor: {livro[2]}, Ano: {livro[3]}, Gênero: {livro[4]}, Disponível: {livro[5]}")
+conn.close()
